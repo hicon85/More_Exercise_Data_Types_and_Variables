@@ -1,0 +1,40 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+namespace _02.From_Left_to_the_Right
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var number = int.Parse(Console.ReadLine());
+
+            for (var i = 0; i < number; i++)
+            {
+                var goodJob = Console.ReadLine()
+                    .Split(" ")
+                    .Select(long.Parse)
+                    .ToArray();
+
+                var left = goodJob[0];
+                var wight = goodJob[1];
+
+                Console.WriteLine(left >wight
+                    ?SumDigits(left)
+                    :SumDigits(wight));
+            }
+        }
+
+        private static int SumDigits(long number)
+        {
+            var sum = 0;
+
+            while (number!=0)
+            {
+                sum += (int)(number % 10);
+                number = number/ 10;
+            }
+            return Math.Abs(sum);
+        }
+    }
+}
